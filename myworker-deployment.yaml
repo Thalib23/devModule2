@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myworker-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myworker-app
+  template:
+    metadata:
+      labels:
+        app: myworker-app
+    spec:
+      containers:
+      - name: worker-container
+        image: thalib23/myworker-app:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
